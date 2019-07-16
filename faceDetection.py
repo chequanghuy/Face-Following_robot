@@ -18,7 +18,7 @@ while True:
     ret, img = cap.read()                                       # đọc Camera
     # img = cv2.flip(img, -1)                                     # Xoay Camera
 #_________________________________  Face recognition ____________________________________#
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)                
+    # gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)                
 
     # faces = faceCascade.detectMultiScale(
     #     gray ,
@@ -26,6 +26,7 @@ while True:
     #     minNeighbors=5 ,     
     #     minSize=(20, 20)
     # )
+
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     faces = faceCascade.detectMultiScale(gray, 1.3, 5)
 #________________________________________________________________________________________#
