@@ -43,12 +43,16 @@ while True:
                 minz = b
                 face_centers = ((x,y), (x+w,y+h))
                 face = a
-
+        print(w)
+        print(',')
+        print(h)
         cv2.rectangle(img,face_centers[0],face_centers[1],(255,0,0),2)
         center_of_Face = face
         cv2.line(img, center_of_Face, Center, (0, 255, 0), 5)
+        # font = cv2.FONT_HERSHEY_SIMPLEX
+        # cv2.putText(img,w,(0,0), font, 4,(255,255,255),2,cv2.LINE_AA)
         cv2.imshow('video',img)
-
+    # print(w)
     k = cv2.waitKey(30) & 0xff
     if k == 27: # press 'ESC' to quit
         break
