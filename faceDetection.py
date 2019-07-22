@@ -13,7 +13,7 @@ cap.set(4,480)                                                  # set Height
 
 Center = (320, 240)
 center_of_Face = (0,0)                                          # khai báo mảng chứa tọa độ tâm khuôn mặt đang theo
-
+ser=Init_uart('COM12')
 while True: 
     ret, img = cap.read()                                       # đọc Camera
     # img = cv2.flip(img, -1)                                     # Xoay Camera
@@ -45,7 +45,8 @@ while True:
                 face = a
         print(w)
         print(',')
-        print(h)
+        print(h)   
+        Angle(ser,int(w/4))
         cv2.rectangle(img,face_centers[0],face_centers[1],(255,0,0),2)
         center_of_Face = face
         cv2.line(img, center_of_Face, Center, (0, 255, 0), 5)
