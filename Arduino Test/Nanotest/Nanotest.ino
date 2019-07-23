@@ -3,6 +3,8 @@
 #define handle_center1 35
 #define handle_center2 90
 int data;
+int angle1=0;
+int angle2=0;
 Servo s9, s10; // tạo 2 Object
 void servo_init();
 SoftwareSerial myser(3,2); //RX - TX
@@ -16,12 +18,30 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
+  data=8;
   if (myser.available() > 0){
     data = myser.read();
     Serial.println(data);
+  }  
+  
+  switch(data){
+    case 0:
+      handle1(0);
+      handle2(0);
+      break;
+    case 1:
+      handle2(++angle2);
+      break;
+    case 2:
+      handle2(--angle2);
+      break;
+    case 3:
+      handle1(++angle1);
+      break;
+    case 4:
+      handle1(--angle1);
+      break;
   }
-  if(data>180) data=-(data-180);
-  handle1(data);
 }
 
 
