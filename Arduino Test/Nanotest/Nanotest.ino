@@ -2,10 +2,12 @@
 #include <Servo.h>
 #define handle_center1 35
 #define handle_center2 90
+
 int data;
 int angle1=0;
 int angle2=0;
 Servo s9, s10; // tạo 2 Object
+
 void servo_init();
 SoftwareSerial myser(3,2); //RX - TX
 
@@ -44,27 +46,20 @@ void loop() {
   }
 }
 
-
-
-
-
-
-
-
-
-
 void handle1(int8_t angle) {//up down
-  if(angle<=-35) angle=-35;
-  if(angle>=145) angle=140;
+  if(angle <= -35) angle = -35;
+  if(angle >= 145) angle = 140;
   int rc_angle = handle_center1 + angle;
   s9.write(rc_angle);
 }
+
 void handle2(int8_t angle) {//left right
-  if(angle<=-90) angle=-90;
-  if(angle>=90) angle=90;
+  if(angle <= -90) angle = -90;
+  if(angle >= 90)angle = 90;
   int rc_angle = handle_center2 + angle;
   s10.write(rc_angle);
 }
+
 void servo_init(){
   s9.attach(9);
   s10.attach(10);
