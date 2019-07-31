@@ -51,11 +51,12 @@ Mouse_event.draw = False
 def MouseCallBack(video, cap, faceCascade):
     while True:
         ret , img = cap.read()
+        img = cv2.flip(img, 1)  
         img_lone = img.copy()
         if Mouse_event.draw:
             img_lone = cv2.rectangle(img_lone,(Mouse_event.x0,Mouse_event.y0),(Mouse_event.x,Mouse_event.y),(0,0,255),2)
         if Mouse_event.img is not None:
-            check, a = check_faces(Mouse_event.img, faceCascade)
+            check, a = check_faces(Mouse_event.img, faceCascade, Mouse_event.x0, Mouse_event.y0)
             if  check == False:
                 pass
             else:
@@ -67,15 +68,14 @@ def MouseCallBack(video, cap, faceCascade):
         if cv2.waitKey(int (1)) == ord('q'):
             break
 
-def check_faces(img, faceCascade):
+def check_faces(img, faceCascade, x0, y0):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     faces = faceCascade.detectMultiScale(gray, 1.3, 5)
     if faces == ():
         return False, (0, 0)
     else:
         x, y, w, h = faces[0]
-        a = (int(x + w/2), int(y + h/2))
+        print(faces)
+        a = (x0 + int(x + w/2), y0 + int(y + h/2))
+        print(a)
         return True, a
-    
-
-    
