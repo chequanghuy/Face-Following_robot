@@ -13,7 +13,7 @@ cap.set(4,480)                                                  # set Height
 Center = (320, 240)                                             # Center camera
 center_of_Face = (0,0)                                          # khai báo mảng chứa tọa độ tâm khuôn mặt đang theo
 
-# ser = Init_uart('COM12')                                        # Init Uart-Protocol at COM.. to communitive with another MCU
+ser = Init_uart('COM12')                                        # Init Uart-Protocol at COM.. to communitive with another MCU
 
 #----------------------------------     Main     ----------------------------------------#
 
@@ -40,27 +40,27 @@ while True:
                 face_centers = ((x,y), (x+w,y+h))
                 face = a
         
-        # if abs(face[0] - Center[0]) > 10 :
-        #     print('lech ngang')
-        #     print(abs(face[0] - Center[0]))
-        #     # cv2.imshow('video',img)
-        #     if face[0] - Center[0] > 0 :
-        #         # xoay phải
-        #         Angle(ser,1)
-        #     if face[0] - Center[0] < 0 :
-        #         # xoay trái
-        #         Angle(ser,2)
+        if abs(face[0] - Center[0]) > 10 :
+            print('lech ngang')
+            print(abs(face[0] - Center[0]))
+            # cv2.imshow('video',img)
+            if face[0] - Center[0] > 0 :
+                # xoay phải
+                Angle(ser,1)
+            if face[0] - Center[0] < 0 :
+                # xoay trái
+                Angle(ser,2)
 
-        # if abs(face[1] - Center[1]) > 10 :
-        #     print('lech')
-        #     print(abs(face[1] - Center[1]))
-        #     # cv2.imshow('video',img)
-        #     if face[1] - Center[1] > 0:
-        #         # xoay xuống
-        #         Angle(ser,3)
-        #     if face[1] - Center[1] < 0:
-        #         # xoay lên
-        #         Angle(ser,4)
+        if abs(face[1] - Center[1]) > 10 :
+            print('lech')
+            print(abs(face[1] - Center[1]))
+            # cv2.imshow('video',img)
+            if face[1] - Center[1] > 0:
+                # xoay xuống
+                Angle(ser,3)
+            if face[1] - Center[1] < 0:
+                # xoay lên
+                Angle(ser,4)
 
         cv2.rectangle(img,face_centers[0],face_centers[1],(255,0,0),2)
         center_of_Face = face
